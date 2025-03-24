@@ -24,30 +24,34 @@ void main() {
         ),
         bottomNavigationBar: Row(
             children: [
-              ElevatedButton(
-                child: const Text("Botão 1"),
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.amber,
-                  onPrimary: Colors.black,
+              Expanded(
+                child: IconButton(
+                  iconSize: 30,
+                  icon: Icon(Icons.house),
+                  onPressed: () {},
                 )
               ),
-              ElevatedButton(
+              Expanded(
+                child: ElevatedButton(
                 child: const Text("Botão 2"),
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.amber,
                   onPrimary: Colors.black,
                 )
+              )
               ),
-              ElevatedButton(
+              Expanded(
+                child: ElevatedButton(
                 child: const Text("Botão 3"),
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.amber,
                   onPrimary: Colors.black,
                 )
-              ) 
+              )
+              ),
+              
             ]
           )
       ));
