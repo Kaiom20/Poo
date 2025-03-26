@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 void main() {
   MaterialApp app = MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.amber
+        primarySwatch: Colors.amber,
+        fontFamily: "Tektur"
       ),
       home: Scaffold(
         appBar: AppBar(title: Text("Meu App")),
@@ -18,7 +19,7 @@ void main() {
                 "No meio",
                 style: TextStyle(fontStyle: FontStyle.italic)
                 ),
-              Text("Terminando")
+              Image.network('https://i.postimg.cc/4dDF24P4/imagem-2025-03-26-135052773.png'),
             ]
           )
         ),
@@ -36,8 +37,8 @@ void main() {
                 child: const Text("Botão 2"),
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.amber,
-                  onPrimary: Colors.black,
+                  backgroundColor: Colors.amber,
+                  foregroundColor: Colors.black,
                 )
               )
               ),
@@ -46,8 +47,8 @@ void main() {
                 child: const Text("Botão 3"),
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.amber,
-                  onPrimary: Colors.black,
+                  backgroundColor: Colors.amber,
+                  foregroundColor: Colors.black,
                 )
               )
               ),
