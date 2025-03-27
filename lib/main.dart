@@ -19,7 +19,14 @@ void main() {
                 "No meio",
                 style: TextStyle(fontStyle: FontStyle.italic)
                 ),
-              Image.network('https://i.postimg.cc/4dDF24P4/imagem-2025-03-26-135052773.png'),
+              FadeInImage.assetNetwork(
+                placeholder: '../assets/images/gradient-5812_256.gif',
+                image:'https://i.postimg.cc/4dDF24P4/imagem-2025-03-26-135052773.png',
+                fadeInDuration: const Duration(seconds: 1),
+                width: 300,
+                height: 200,
+
+              )
             ]
           )
         ),
