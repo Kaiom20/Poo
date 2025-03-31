@@ -8,67 +8,62 @@ void main() {
 
       home: Scaffold(
 
-        appBar: AppBar(title: Text("Cervejas")),
+        appBar: AppBar(title: Text("Bebidas...")),
 
-        body: Scrollbar(
-          thumbVisibility: true,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DataTable(
-              columns: [
-                DataColumn(label: Text('Nome')),
-                DataColumn(label: Text('Estilo')),
-                DataColumn(label: Text('IBU')),
-                DataColumn(label: Text('IBU')),
-                DataColumn(label: Text('IBU')),
-                DataColumn(label: Text('IBU')),
-                DataColumn(label: Text('IBU')),
-                DataColumn(label: Text('IBU')),
-                DataColumn(label: Text('IBU')),
-              ],
-              rows: [
-                DataRow(cells: [
-                  DataCell(Text('La Fin Du Monde')),
-                  DataCell(Text('Bock')),
-                  DataCell(Text('65')),
-                  DataCell(Text('65')),
-                  DataCell(Text('65')),
-                  DataCell(Text('65')),
-                  DataCell(Text('65')),
-                  DataCell(Text('65')),
-                  DataCell(Text('65')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('Sapporo Premium')),
-                  DataCell(Text('Sour Ale')),
-                  DataCell(Text('54')),
-                  DataCell(Text('54')),
-                  DataCell(Text('54')),
-                  DataCell(Text('54')),
-                  DataCell(Text('54')),
-                  DataCell(Text('54')),
-                  DataCell(Text('54')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('Duvel')),
-                  DataCell(Text('Pilsner')),
-                  DataCell(Text('82')),
-                  DataCell(Text('82')),
-                  DataCell(Text('82')),
-                  DataCell(Text('82')),
-                  DataCell(Text('82')),
-                  DataCell(Text('82')),
-                  DataCell(Text('82')),
-                ]),
-              ],
-            ),
-          ),
+        body: ListView(
+          children: [
+            ExpansionTile(
+              title: Text("La Fim Du Monde"),
+              subtitle: Text("Beer"),
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:[
+                      Text("12% alc"),
+                      Text("Country: Belgium"),
+                    ]
+                  )
+                )
+              ]
+              ),
+            ExpansionTile(
+              title: Text("Bosque Dos Bois"),
+              subtitle: Text("Cachaça"),
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:[
+                      Text("42% alc"),
+                      Text("Country: Brazil"),
+                    ]
+                  )
+                )
+              ]
+              ),
+            ExpansionTile(
+              title: Text("Sandman"),
+              subtitle: Text("Wine"),
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:[
+                      Text("16% alc"),
+                      Text("Country: Portugal"),
+                    ]
+                  )
+                )
+              ]
+              ),
+          ],
         ),
-
-        bottomNavigationBar: Text("Botão 1"),
-
-      ));
-
+      ),
+     ); 
   runApp(app);
 
 }
