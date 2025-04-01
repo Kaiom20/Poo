@@ -53,13 +53,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  fonts:
-    - family: Tektur
-      fonts:
-        - asset: assets/fonts/Tektur-VariableFont_wdth,wght.ttf
-          weight: 700
-  assets:
-    - assets/images/gradient-5812_256.gif
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

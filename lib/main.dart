@@ -1,5 +1,29 @@
 import 'package:flutter/material.dart';
 
+class NewNavBar extends StatelessWidget{
+  NewNavBar();
+
+  void botaoFoiTocado(int index) {
+    print("Tocaram no botão $index");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      onTap: botaoFoiTocado,
+      items: const[
+        BottomNavigationBarItem(
+          label: "Cafés", 
+          icon: Icon(Icons.coffee_outlined),
+        ),
+        BottomNavigationBarItem(
+          label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+        BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined)),
+      ],
+    );
+  }
+}
+
 void main() {
 
   MaterialApp app = MaterialApp(
@@ -8,62 +32,34 @@ void main() {
 
       home: Scaffold(
 
-        appBar: AppBar(title: Text("Bebidas...")),
+        appBar: AppBar(title: Text("Dicas")),
 
-        body: ListView(
-          children: [
-            ExpansionTile(
-              title: Text("La Fim Du Monde"),
-              subtitle: Text("Beer"),
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      Text("12% alc"),
-                      Text("Country: Belgium"),
-                    ]
-                  )
-                )
-              ]
-              ),
-            ExpansionTile(
-              title: Text("Bosque Dos Bois"),
-              subtitle: Text("Cachaça"),
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      Text("42% alc"),
-                      Text("Country: Brazil"),
-                    ]
-                  )
-                )
-              ]
-              ),
-            ExpansionTile(
-              title: Text("Sandman"),
-              subtitle: Text("Wine"),
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      Text("16% alc"),
-                      Text("Country: Portugal"),
-                    ]
-                  )
-                )
-              ]
-              ),
-          ],
-        ),
-      ),
-     ); 
+        body: Column(children: [
+
+          Expanded(
+
+            child: Text("La Fin Du Monde - Bock - 65 ibu"),
+
+          ),
+
+          Expanded(
+
+            child: Text("Sapporo Premiume - Sour Ale - 54 ibu"),
+
+          ),
+
+          Expanded(
+
+            child: Text("Duvel - Pilsner - 82 ibu"),
+
+          )
+
+        ]),
+
+        bottomNavigationBar: NewNavBar(),
+
+      ));
+
   runApp(app);
 
 }
