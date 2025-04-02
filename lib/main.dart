@@ -24,6 +24,25 @@ class NewNavBar extends StatelessWidget{
   }
 }
 
+class ShowDrinks extends StatelessWidget{
+  ShowDrinks();
+
+@override
+Widget build(BuildContext context) {
+  return Column(children: [
+          Expanded(
+            child: Text("La Fin Du Monde - Bock - 65 ibu"),
+          ),
+          Expanded(
+            child: Text("Sapporo Premiume - Sour Ale - 54 ibu"),
+          ),
+          Expanded(
+            child: Text("Duvel - Pilsner - 82 ibu"),
+          ),
+        ]);
+  }
+}
+
 void main() {
 
   MaterialApp app = MaterialApp(
@@ -34,27 +53,7 @@ void main() {
 
         appBar: AppBar(title: Text("Dicas")),
 
-        body: Column(children: [
-
-          Expanded(
-
-            child: Text("La Fin Du Monde - Bock - 65 ibu"),
-
-          ),
-
-          Expanded(
-
-            child: Text("Sapporo Premiume - Sour Ale - 54 ibu"),
-
-          ),
-
-          Expanded(
-
-            child: Text("Duvel - Pilsner - 82 ibu"),
-
-          )
-
-        ]),
+        body: ShowDrinks(),
 
         bottomNavigationBar: NewNavBar(),
 
