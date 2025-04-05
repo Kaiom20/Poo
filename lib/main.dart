@@ -17,8 +17,13 @@ class NewNavBar extends StatelessWidget{
           icon: Icon(Icons.coffee_outlined),
         ),
         BottomNavigationBarItem(
-          label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
-        BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined)),
+          label: "Cervejas", 
+          icon: Icon(Icons.local_drink_outlined)
+        ),
+        BottomNavigationBarItem(
+          label: "Nações", 
+          icon: Icon(Icons.flag_outlined)
+        ),
       ],
     );
   }
@@ -43,21 +48,37 @@ Widget build(BuildContext context) {
   }
 }
 
-void main() {
+class MyApp extends StatelessWidget{
+  MyApp();
 
-  MaterialApp app = MaterialApp(
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
 
       theme: ThemeData(primarySwatch: Colors.deepPurple),
 
       home: Scaffold(
 
-        appBar: AppBar(title: Text("Dicas")),
+        appBar: CustomAppBar(),
 
         body: ShowDrinks(),
 
         bottomNavigationBar: NewNavBar(),
 
       ));
+
+  }
+}
+
+class CustomAppBar extends AppBar{
+  CustomAppBar() : super(
+    title: Text("Dicas"),
+  );
+}
+
+void main() {
+
+  MyApp app = MyApp();
 
   runApp(app);
 
