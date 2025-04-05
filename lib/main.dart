@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class NewNavBar extends StatelessWidget{
-  NewNavBar();
+  final List<Icon> icones;
+  
+  NewNavBar(this.icones, {super.key});
 
   void botaoFoiTocado(int index) {
     print("Tocaram no botão $index");
@@ -11,20 +13,15 @@ class NewNavBar extends StatelessWidget{
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: botaoFoiTocado,
-      items: const[
-        BottomNavigationBarItem(
-          label: "Cafés", 
-          icon: Icon(Icons.coffee_outlined),
-        ),
-        BottomNavigationBarItem(
-          label: "Cervejas", 
-          icon: Icon(Icons.local_drink_outlined)
-        ),
-        BottomNavigationBarItem(
-          label: "Nações", 
-          icon: Icon(Icons.flag_outlined)
-        ),
-      ],
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black,
+      items: icones
+          .map((icone) => BottomNavigationBarItem(
+              icon: icone,
+              label: "",
+          ))
+          .toList()
     );
   }
 }
@@ -63,7 +60,14 @@ class MyApp extends StatelessWidget{
 
         body: ShowDrinks(),
 
-        bottomNavigationBar: NewNavBar(),
+        bottomNavigationBar: NewNavBar([
+          Icon(Icons.coffee_outlined),
+          Icon(Icons.coffee_outlined),
+          Icon(Icons.local_drink_outlined),
+          Icon(Icons.local_drink_outlined),
+          Icon(Icons.flag_outlined),
+          Icon(Icons.flag_outlined),
+        ]),
 
       ));
 
