@@ -28,30 +28,7 @@ class MyApp extends StatelessWidget {
 
         home: Scaffold(
 
-          appBar: AppBar(
-            title: const Text("Dicas"),
-            actions: [
-              PopupMenuButton<String>(
-                onSelected: (String value) {
-                  print('Cor Selecionada: $value');
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>> [
-                  const PopupMenuItem<String> (
-                    value: 'Red',
-                    child: Text('Vermelho'),
-                  ),
-                  const PopupMenuItem<String> (
-                    value: 'Yellow',
-                    child: Text('Amarelo'),
-                  ),
-                  const PopupMenuItem<String> (
-                    value: 'Orange',
-                    child: Text('Laranja'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          appBar: CustomAppBar(),
 
           body: DataBodyWidget(objects: [
             "La Fin Du Monde - Bock - 65 ibu",
@@ -77,6 +54,32 @@ class MyApp extends StatelessWidget {
 
 }
 
+class CustomAppBar extends AppBar {
+  CustomAppBar() : super(
+            title: const Text("Dicas"),
+            actions: [
+              PopupMenuButton<String>(
+                onSelected: (String value) {
+                  print('Cor Selecionada: $value');
+                },
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>> [
+                  const PopupMenuItem<String> (
+                    value: 'Red',
+                    child: Text('Vermelho'),
+                  ),
+                  const PopupMenuItem<String> (
+                    value: 'Yellow',
+                    child: Text('Amarelo'),
+                  ),
+                  const PopupMenuItem<String> (
+                    value: 'Orange',
+                    child: Text('Laranja'),
+                  ),
+                ],
+              ),
+            ],
+          );
+}
 
 class NewNavBar extends StatelessWidget {
   List<Icon> objects;
