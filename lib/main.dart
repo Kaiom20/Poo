@@ -1,6 +1,97 @@
 import 'package:flutter/material.dart';
 
-
+var dataObjects = [
+    {
+      "name": "La Fin Du Monde",
+      "style": "Bock",
+      "ibu": "65"
+    },
+    {
+      "name": "Sapporo Premiume",
+      "style": "Sour Ale",
+      "ibu": "54"
+    },
+    {
+      "name": "Duvel", 
+      "style": "Pilsner", 
+      "ibu": "82"
+    },
+    {
+      "name": "La Fin Du Monde",
+      "style": "Bock",
+      "ibu": "65"
+    },
+    {
+      "name": "Sapporo Premiume",
+      "style": "Sour Ale",
+      "ibu": "54"
+    },
+    {
+      "name": "Duvel", 
+      "style": "Pilsner", 
+      "ibu": "82"
+    },
+    {
+      "name": "La Fin Du Monde",
+      "style": "Bock",
+      "ibu": "65"
+    },
+    {
+      "name": "Sapporo Premiume",
+      "style": "Sour Ale",
+      "ibu": "54"
+    },
+    {
+      "name": "Duvel", 
+      "style": "Pilsner", 
+      "ibu": "82"
+    },
+    {
+      "name": "La Fin Du Monde",
+      "style": "Bock",
+      "ibu": "65"
+    },
+    {
+      "name": "Sapporo Premiume",
+      "style": "Sour Ale",
+      "ibu": "54"
+    },
+    {
+      "name": "Duvel", 
+      "style": "Pilsner", 
+      "ibu": "82"
+    },
+    {
+      "name": "La Fin Du Monde",
+      "style": "Bock",
+      "ibu": "65"
+    },
+    {
+      "name": "Sapporo Premiume",
+      "style": "Sour Ale",
+      "ibu": "54"
+    },
+    {
+      "name": "Duvel", 
+      "style": "Pilsner", 
+      "ibu": "82"
+    },
+    {
+      "name": "La Fin Du Monde",
+      "style": "Bock",
+      "ibu": "65"
+    },
+    {
+      "name": "Sapporo Premiume",
+      "style": "Sour Ale",
+      "ibu": "54"
+    },
+    {
+      "name": "Duvel", 
+      "style": "Pilsner", 
+      "ibu": "82"
+    }
+  ];
 
 void main() {
 
@@ -10,121 +101,112 @@ void main() {
 
 }
 
-
-
-
-
 class MyApp extends StatelessWidget {
 
   @override
 
   Widget build(BuildContext context) {
 
+    
+
     return MaterialApp(
 
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
 
-        debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner:false,
 
-        home: Scaffold(
+      home: Scaffold(
 
-          appBar: CustomAppBar(),
+        appBar: AppBar( 
 
-          body: DataBodyWidget(objects: [
-            "La Fin Du Monde - Bock - 65 ibu",
-            "Sapporo Premiume - Sour Ale - 54 ibu",
-            "Duvel - Pilsner - 82 ibu",
-            "Duvel - Pilsner - 82 ibu",
-            "Duvel - Pilsner - 82 ibu",
-            "Duvel - Pilsner - 82 ibu"
-          ]),
+          title: const Text("Dicas"),
 
-          bottomNavigationBar: NewNavBar(objects: [
-              Icon(Icons.coffee_outlined),
-              Icon(Icons.coffee_outlined),
-              Icon(Icons.local_drink_outlined),
-              Icon(Icons.local_drink_outlined),
-              Icon(Icons.flag_outlined),
-              Icon(Icons.flag_outlined)
-          ]),
+          ),
 
-        ));
+        body: Scrollbar(
+          child: SingleChildScrollView(
+            child: DataBodyWidget(objects: dataObjects),
+          ),
+        ),
+
+        bottomNavigationBar: NewNavBar(),
+
+      ));
 
   }
 
 }
 
-class CustomAppBar extends AppBar {
-  CustomAppBar() : super(
-            title: const Text("Dicas"),
-            actions: [
-              PopupMenuButton<String>(
-                onSelected: (String value) {
-                  print('Cor Selecionada: $value');
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>> [
-                  const PopupMenuItem<String> (
-                    value: 'Red',
-                    child: Text('Vermelho'),
-                  ),
-                  const PopupMenuItem<String> (
-                    value: 'Yellow',
-                    child: Text('Amarelo'),
-                  ),
-                  const PopupMenuItem<String> (
-                    value: 'Orange',
-                    child: Text('Laranja'),
-                  ),
-                ],
-              ),
-            ],
-          );
-}
+
+
+
 
 class NewNavBar extends StatelessWidget {
-  List<Icon> objects;
-  NewNavBar({this.objects = const []});
+
+  NewNavBar();
+
+
 
   void botaoFoiTocado(int index) {
+
     print("Tocaram no botão $index");
+
   }
 
+
+
   @override
+
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.black,
-      items: objects
-        .map((icn) => BottomNavigationBarItem(
-          icon: icn,
-          label: '',
-        ))
-        .toList(),
-      onTap: botaoFoiTocado,
-    );
+
+    return BottomNavigationBar(onTap: botaoFoiTocado, items: const [
+
+      BottomNavigationBarItem(
+
+        label: "Cafés",
+
+        icon: Icon(Icons.coffee_outlined),
+
+      ),
+
+      BottomNavigationBarItem(
+
+          label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+
+      BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
+
+    ]);
+
   }
+
 }
 
 
 
 class DataBodyWidget extends StatelessWidget {
-  List<String> objects;
+  List objects;
   DataBodyWidget( {this.objects = const [] });
 
-  Expanded processarUmElemento(String obj){
-
-    return Expanded(                
-          child: Center(child: Text(obj)),
-        );
-  }
   @override
   Widget build(BuildContext context) {
+    var columnNames = ["Nome","Estilo","IBU"],
+        propertyNames = ["name", "style", "ibu"];
 
-    return Column(children: objects.map( 
-      (obj) => Expanded(
-        child: Center(child: Text(obj)),
-        )
-      ).toList());
+    return DataTable(
+      columns: columnNames.map( 
+                (name) => DataColumn(
+                  label: Expanded(
+                    child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
+                  )
+                )
+              ).toList()       
+      ,
+      rows: objects.map( 
+        (obj) => DataRow(
+            cells: propertyNames.map(
+              (propName) => DataCell(Text(obj[propName]))
+            ).toList()
+          )
+        ).toList());
   }
 }
