@@ -141,10 +141,9 @@ class MyApp extends StatelessWidget {
 
           ),
 
-        body: Scrollbar(
-          child: SingleChildScrollView(
-            child: DataBodyWidget(objects: dataCoffee),
-          ),
+        body: MytileWidget(
+          items: dataCoffee,
+          fields: ["name", "type", "price"],
         ),
 
         bottomNavigationBar: NewNavBar(),
@@ -160,53 +159,72 @@ class MyApp extends StatelessWidget {
 
 
 class NewNavBar extends StatelessWidget {
+
   NewNavBar();
+
+
+
   void botaoFoiTocado(int index) {
+
     print("Tocaram no botão $index");
+
   }
 
+
+
   @override
+
   Widget build(BuildContext context) {
+
     return BottomNavigationBar(onTap: botaoFoiTocado, items: const [
+
       BottomNavigationBarItem(
+
         label: "Cafés",
+
         icon: Icon(Icons.coffee_outlined),
+
       ),
+
       BottomNavigationBarItem(
+
           label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
+
       BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
+
     ]);
+
   }
+
 }
 
 
-class DataBodyWidget extends StatelessWidget {
-  final List<Map<String, dynamic>> objects;
 
-  DataBodyWidget({this.objects = const []});
+class MytileWidget extends StatelessWidget {
+  final List<Map<String, dynamic>> items;
+  final List<String> fields;
+
+  const MytileWidget({
+    super.key,
+    required this.items,
+    required this.fields,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (objects.isEmpty) {
-      return Center(child: Text("Nenhum dado disponível"));
-    }
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        var item = items[index];
 
-    final keys = objects.first.keys.toList();
-
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
-        columns: keys
-            .map((key) => DataColumn(label: Text(key)))
-            .toList(),
-        rows: objects.map((obj) {
-          return DataRow(
-            cells: keys.map((key) {
-              return DataCell(Text('${obj[key] ?? ''}'));
-            }).toList(),
-          );
-        }).toList(),
-      ),
+        return ListTile(
+          leading: const Icon(Icons.list),
+          title: Text(item[fields[0]]?.toString() ?? ''),
+          subtitle: Text(fields.skip(1).map((f) =>
+              '${f[0].toUpperCase()}${f.substring(1)}: ${item[f] ?? ""}').join(', ')),
+          trailing: const Icon(Icons.arrow_forward_ios),
+        );
+      },
     );
   }
 }
