@@ -1,5 +1,23 @@
 import 'package:flutter/material.dart';
 
+var dataCoffee = [
+  {
+    "name": "Santa Clara",
+    "type": "Gourmet",
+    "price": "15,99"
+  },
+  {
+    "name": "Santa Helena",
+    "type": "Premium",
+    "price": "13,99"
+  },
+  {
+    "name": "3 Corações",
+    "type": "Extraforte",
+    "price": "11,99"
+  },
+];
+
 var dataObjects = [
     {
       "name": "La Fin Du Monde",
@@ -123,7 +141,11 @@ class MyApp extends StatelessWidget {
 
           ),
 
-        body: MytileWidget(items: dataObjects),
+        body: Scrollbar(
+          child: SingleChildScrollView(
+            child: DataBodyWidget(objects: dataCoffee),
+          ),
+        ),
 
         bottomNavigationBar: NewNavBar(),
 
@@ -138,64 +160,53 @@ class MyApp extends StatelessWidget {
 
 
 class NewNavBar extends StatelessWidget {
-
   NewNavBar();
-
-
-
   void botaoFoiTocado(int index) {
-
     print("Tocaram no botão $index");
-
   }
-
-
 
   @override
-
   Widget build(BuildContext context) {
-
     return BottomNavigationBar(onTap: botaoFoiTocado, items: const [
-
       BottomNavigationBarItem(
-
         label: "Cafés",
-
         icon: Icon(Icons.coffee_outlined),
-
       ),
-
       BottomNavigationBarItem(
-
           label: "Cervejas", icon: Icon(Icons.local_drink_outlined)),
-
       BottomNavigationBarItem(label: "Nações", icon: Icon(Icons.flag_outlined))
-
     ]);
-
   }
-
 }
 
 
+class DataBodyWidget extends StatelessWidget {
+  final List<Map<String, dynamic>> objects;
 
-class MytileWidget extends StatelessWidget {
-  final List<Map<String, String>> items;
-  MytileWidget({this.items = const []});
+  DataBodyWidget({this.objects = const []});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        var item = items[index];
-        return ListTile(
-          leading: Icon(Icons.local_drink_outlined),
-          title: Text(item["name"] ?? ""),
-          subtitle: Text("Estilo: ${item["style"]}, IBU: ${item["ibu"]}"),
-          trailing: Icon(Icons.arrow_forward_ios),
-        );
-      },
+    if (objects.isEmpty) {
+      return Center(child: Text("Nenhum dado disponível"));
+    }
+
+    final keys = objects.first.keys.toList();
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        columns: keys
+            .map((key) => DataColumn(label: Text(key)))
+            .toList(),
+        rows: objects.map((obj) {
+          return DataRow(
+            cells: keys.map((key) {
+              return DataCell(Text('${obj[key] ?? ''}'));
+            }).toList(),
+          );
+        }).toList(),
+      ),
     );
   }
 }
