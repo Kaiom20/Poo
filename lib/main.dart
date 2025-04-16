@@ -123,11 +123,7 @@ class MyApp extends StatelessWidget {
 
           ),
 
-        body: Scrollbar(
-          child: SingleChildScrollView(
-            child: DataBodyWidget(objects: dataObjects),
-          ),
-        ),
+        body: MytileWidget(items: dataObjects),
 
         bottomNavigationBar: NewNavBar(),
 
@@ -183,30 +179,23 @@ class NewNavBar extends StatelessWidget {
 
 
 
-class DataBodyWidget extends StatelessWidget {
-  List objects;
-  DataBodyWidget( {this.objects = const [] });
+class MytileWidget extends StatelessWidget {
+  final List<Map<String, String>> items;
+  MytileWidget({this.items = const []});
 
   @override
   Widget build(BuildContext context) {
-    var columnNames = ["Nome","Estilo","IBU"],
-        propertyNames = ["name", "style", "ibu"];
-
-    return DataTable(
-      columns: columnNames.map( 
-                (name) => DataColumn(
-                  label: Expanded(
-                    child: Text(name, style: TextStyle(fontStyle: FontStyle.italic))
-                  )
-                )
-              ).toList()       
-      ,
-      rows: objects.map( 
-        (obj) => DataRow(
-            cells: propertyNames.map(
-              (propName) => DataCell(Text(obj[propName]))
-            ).toList()
-          )
-        ).toList());
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        var item = items[index];
+        return ListTile(
+          leading: Icon(Icons.local_drink_outlined),
+          title: Text(item["name"] ?? ""),
+          subtitle: Text("Estilo: ${item["style"]}, IBU: ${item["ibu"]}"),
+          trailing: Icon(Icons.arrow_forward_ios),
+        );
+      },
+    );
   }
 }
